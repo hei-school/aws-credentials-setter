@@ -1,5 +1,7 @@
 name: AWS credentials setter
 
+description: Set AWS credentials from secrets and environment variables
+
 inputs:
   secrets:
     description: 'Secrets toJSON'
