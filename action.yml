@@ -1,5 +1,10 @@
 name: AWS credentials setter
 
+inputs:
+  secrets:
+    description: 'Secrets toJSON'
+  region:
+
 runs:
   using: "composite"
   steps:
@@ -7,14 +12,14 @@ runs:
       if: ${{ github.ref_name == 'preprod' }}
       uses: aws-actions/configure-aws-credentials@v4.0.1
       with:
-        aws-access-key-id: ${{ secrets.PREPROD_AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.PREPROD_AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
+        aws-access-key-id: ${{ fromJSON(inputs.secrets).PREPROD_AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ fromJSON(inputs.secrets).PREPROD_AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ inputs.region }}
 
     - name: Configure prod AWS credentials
       if: ${{ github.ref_name == 'prod' }}
       uses: aws-actions/configure-aws-credentials@v4.0.1
       with:
-        aws-access-key-id: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
+        aws-access-key-id: ${{ fromJSON(inputs.secrets).PROD_AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ fromJSON(inputs.secrets).PROD_AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ inputs.region }}
