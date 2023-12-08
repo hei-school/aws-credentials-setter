@@ -3,7 +3,7 @@ name: AWS credentials setter
 description: Set AWS credentials from secrets and environment variables
 branding:
   icon: 'alert-triangle'
-  colo: 'red'
+  color: 'red'
 
 inputs:
   secrets:
