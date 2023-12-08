@@ -4,6 +4,7 @@ inputs:
   secrets:
     description: 'Secrets toJSON'
   region:
+    description: 'AWS region'
 
 runs:
   using: "composite"
